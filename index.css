@@ -11,10 +11,11 @@ body {
   /*background-color: #000066;*/
 }
 
-.body {    
+/*.body {    
   font-family: 'Oswald', Impact, sans-serif !important;
+  font-family: "Big Caslon", "Book Antiqua", "Palatino Linotype", Georgia, serif; !important;
   color: rgb(102, 102, 102) !important;
-}
+}*/
 
 .body-width {
   width: 90%;
