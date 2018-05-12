@@ -10,74 +10,72 @@ $(document).ready(function() {
 
   // Wiki Search
   $(".button").on("keydown", function() {
-    $(".show-rslt").empty();
+    $(".list-group").empty();
     var word = $("#searchForm").val();
     var searchURL = "https://en.wikipedia.org/w/api.php?action=opensearch&format=json&origin=*&search=";
-    var queryURL = "https://en.wikipedia.org/w/api.php?action=query&list=search&prop=info&origin=*&inprop=url&utf8=&format=json&srsearch=";
+    var queryURL = "https://en.wikipedia.org/w/api.php?action=query&list=search&format=json&origin=*&srsearch=";
+
+    if (word.length !== 0) {
   
-  // Display disambiguation search result   
-    $.ajax({
-        url: searchURL + word + '_(disambiguation)',
-        dataType: 'json',      
-        success: function(resp) {
-          // console.log(resp);
-          // console.log(word);
-          var rsltLink = resp[3][0];
-          var titleDisamb = resp[1][0];
-          var quoteDisamb = resp[2][0];            
-          if (resp[3][0]) {
-            var rslt = "<div ><a target='_blank' href=" + rsltLink + "><i><h4>" + titleDisamb + "</h4><p>" + quoteDisamb + "</p></></a></div>";
-            $(".show-disamb").html(rslt);
-          }
-        }
-    });
-
-  // Display search through titles result
-    // $.ajax({
-    //   url: searchURL + word,
-    //   dataType: 'json',      
-    //   success: function(data) {          
-    //     for (var i = 0; i < 10; i++) {
-    //       var rsltUrl = data[3][i];
-    //       var title = data[1][i];
-    //       var quote = data[2][i];
-
-    //       if (rsltUrl) {
-    //         var rsltStr = "<div ><a target='_blank' href=" + rsltUrl + "><h4>" + title + "</h4><p>" + quote + "</p></a></div>";
-    //         $(".show-rslt").append(rsltStr);
-    //       }  
-    //     }
-    //   }
-    // });
-
-  // Display query search result through entire text   
-    $.ajax({
-        url: queryURL + word,
-        dataType: 'jsonp',
-        type: 'POST',
-        success: function shwRslt(queRslt) {
-          var pages = queRslt["query"]["search"];
-            console.log(pages[0]);
-          
-          //variables from JSON
-          // var results = queRslt.query.search;          
-          
-            for (var i = 0; i < queRslt.length; i++) {
-              //add to html
-              var resultTitle = '<h3 class="title">' + queRslt[i].title + '</h3>';
-              // var resultSnip = '<p class="snippet">' + queRslt[i].snippet + '</p>';
-              // var resultList = "<a class='list-group-item' href='https://en.wikipedia.org/wiki/" + queRslt[i].title + "' target='_blank'>" + resultTitle + resultSnip + "</a>";
-              // $("ul").append(resultList).addClass("article");
-              $("ul").append(resultTitle);
+    // Display disambiguation search result   
+      $.ajax({
+          url: searchURL + word + '_(disambiguation)',
+          dataType: 'json',      
+          success: function(resp) {
+            // console.log(resp);
+            // console.log(word);
+            var rsltLink = resp[3][0];
+            var titleDisamb = resp[1][0];
+            var quoteDisamb = resp[2][0];            
+            if (resp[3][0].length) {
+              // var rslt = "<div ><a target='_blank' href=" + rsltLink + "><i><h4>" + titleDisamb + "</h4><p>" + quoteDisamb + "</p></></a></div>";
+              var rslt = "<a class='list-group-item' href='" + rsltLink + "' target='_blank'><i><h4 style='background-color: yellow; color: green'>" + titleDisamb + "</h4><p>" + quoteDisamb + "</p></a><br>";
+              $("ul").html(rslt);
             }
-                  
-          //console.log("Success block");
-        },
-        error: function(error) {
-          console.log(error);
-        }
+          }
       });
 
+      if (document.getElementById("titlesOnlySearchCheck").checked){
+
+    // Display search through titles result
+        $.ajax({
+          url: searchURL + word,
+          dataType: 'json',      
+          success: function(data) {          
+            for (var i = 0; i < 10; i++) {
+              var rsltUrl = data[3][i];
+              var title = data[1][i];
+              var quote = data[2][i];
+
+              if (rsltUrl) {
+                // var rsltStr = "<div ><a target='_blank' href=" + rsltUrl + "><h4>" + title + "</h4><p>" + quote + "</p></a></div>";
+                var rsltStr = "<a class='list-group-item' href='" + rsltUrl + "' target='_blank'><h4>" + title + "</h4><p>" + quote + "</p></a>";
+                $("ul").append(rsltStr);
+              }  
+            }
+          }
+        });
+      } else {
+    // Display query search result through the entire text   
+        $.ajax({
+          url: queryURL + word,
+          dataType: 'json',
+          success: function shwRslt(queRslt) {
+            var pages = queRslt.query.search; // obj "search" in obj queRslt["query"]
+            
+            for (var i = 0; i < 10; i++) {
+              if (pages) {
+                var pageid = pages[i].pageid;
+                var resultTitle = '<h3 class="title">' + pages[i].title + '</h3>';
+                var resultSnip = '<p class="snippet">' + pages[i].snippet + '</p>';
+                var resultList = "<a class='list-group-item' href='https://en.wikipedia.org/?curid=" + pageid + "' target='_blank'>" + resultTitle + resultSnip + "</a>";
+                $("ul").append(resultList);
+              }
+            }
+          }        
+        });
+      }
+    }  
   });
 
 });
