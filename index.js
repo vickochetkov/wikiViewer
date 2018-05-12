@@ -27,9 +27,8 @@ $(document).ready(function() {
             var rsltLink = resp[3][0];
             var titleDisamb = resp[1][0];
             var quoteDisamb = resp[2][0];            
-            if (resp[3][0].length) {
-              // var rslt = "<div ><a target='_blank' href=" + rsltLink + "><i><h4>" + titleDisamb + "</h4><p>" + quoteDisamb + "</p></></a></div>";
-              var rslt = "<a class='list-group-item' href='" + rsltLink + "' target='_blank'><i><h4 style='background-color: yellow; color: green'>" + titleDisamb + "</h4><p>" + quoteDisamb + "</p></a><br>";
+            if (resp[3][0]) {            
+              var rslt = "<a class='list-group-item list-group-item-action list-group-item-warning' href='" + rsltLink + "' target='_blank'><i><h4 style='color: green'>" + titleDisamb + "</h4><p>" + quoteDisamb + "</p></a>";
               $("ul").html(rslt);
             }
           }
@@ -47,9 +46,8 @@ $(document).ready(function() {
               var title = data[1][i];
               var quote = data[2][i];
 
-              if (rsltUrl) {
-                // var rsltStr = "<div ><a target='_blank' href=" + rsltUrl + "><h4>" + title + "</h4><p>" + quote + "</p></a></div>";
-                var rsltStr = "<a class='list-group-item' href='" + rsltUrl + "' target='_blank'><h4>" + title + "</h4><p>" + quote + "</p></a>";
+              if (rsltUrl) {                
+                var rsltStr = "<a class='list-group-item list-group-item-action list-group-item-primary' href='" + rsltUrl + "' target='_blank'><h4>" + title + "</h4><p>" + quote + "</p></a>";
                 $("ul").append(rsltStr);
               }  
             }
@@ -68,7 +66,7 @@ $(document).ready(function() {
                 var pageid = pages[i].pageid;
                 var resultTitle = '<h3 class="title">' + pages[i].title + '</h3>';
                 var resultSnip = '<p class="snippet">' + pages[i].snippet + '</p>';
-                var resultList = "<a class='list-group-item' href='https://en.wikipedia.org/?curid=" + pageid + "' target='_blank'>" + resultTitle + resultSnip + "</a>";
+                var resultList = "<a class='list-group-item list-group-item-action list-group-item-primary' href='https://en.wikipedia.org/?curid=" + pageid + "' target='_blank'>" + resultTitle + resultSnip + "</a>";
                 $("ul").append(resultList);
               }
             }

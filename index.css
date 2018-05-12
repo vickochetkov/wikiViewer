@@ -4,11 +4,13 @@
 }
 
 body {    
-  font-family: Impact, sans-serif !important;
+  font-family: "Oswald", Impact, sans-serif !important;
   color: #d2d2d2 !important;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
-  /*background-color: #000066;*/
+  background-image: url("1.jpg");
+  background-repeat: no-repeat, repeat;
+  background-color: #000066;
 }
 
 /*.body {    
@@ -19,7 +21,7 @@ body {
 
 .body-width {
   width: 60%;
-  min-height: 800px;
+  min-height: 900px;
   text-align: center;
   margin: 15px;
   padding: 15px;
@@ -27,7 +29,28 @@ body {
   /*background-image: url('imgs/14.jpg');*/
   background-repeat: no-repeat;
   background-size: auto 800px;
-  background-color: #4da6ff;
+  background-color: #36486b;
+}
+
+.my-text {
+  font-family: "Big Caslon";
+  font-size: 3em;
+  color: #bb2c24;
+}
+
+.fa-searchengin {
+  vertical-align: top; 
+  color:gold;
+}
+
+#searchFrame {
+  opacity: 0.7;
+  filter: alpha(opacity=70); /* For IE8 and earlier */
+}
+
+#searchFrame:hover {
+  opacity: 0.9;
+  filter: alpha(opacity=90); /* For IE8 and earlier */
 }
 
 /*.button {
@@ -52,17 +75,17 @@ a.button {
 }
 
 input[type=text] {
-    width: 100px;
+    width: 150px;
     -webkit-transition: width 0.4s ease-in-out;
     transition: width 0.4s ease-in-out;
 }
 
 /* When the input field gets focus, change its width to 100% */
 input[type=text]:focus {
-    width: 100%;
+    width: 50%;
 }
 
-.card {
+/*.card {
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     transition: 0.3s;
     width: 90%;
@@ -73,4 +96,4 @@ input[type=text]:focus {
 
 .card:hover {
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
-}
+}*/
