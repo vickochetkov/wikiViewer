@@ -33,13 +33,22 @@
 
     <br>
     <div class="brandName text-center" id="dr">
-      <span class="my-text">Wiki Searcher</span>
+      <span class="my-text">Wiki Finder</span>
       <span class="fab fa-searchengin fa-2x"></span>      
     </div>
     
     <div class="container body-width" id="searchFrame" style="overflow: auto; height:900px;">
       <div>
-        <input class="button" id="searchForm" type="text" name="search" placeholder="Search Wiki">
+        <!-- <input class="button" id="searchForm" type="text" name="search" placeholder="Search Wiki"> -->
+
+        <form id="search-form_3">
+          <input type="text" class="button search_3 text-center" placeholder="Search Wiki" id="searchForm"/>
+          <!-- <input type="submit" class="submit_3" value="Search" /> -->
+          <button type="submit" class="submit_3">
+            <i class="fas fa-window-close fa-lg"></i>
+          </button>
+        </form>
+
 
         <label class="container">Search Only In Titles
           <input type="checkbox" id="titlesOnlySearchCheck" checked="checked">

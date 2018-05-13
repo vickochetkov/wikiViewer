@@ -9,7 +9,7 @@ $(document).ready(function() {
   $('#searchForm').focus();
 
   // Wiki Search
-  $(".button").on("keydown", function() {
+  $(".search_3").on("keydown", function() {
     $(".list-group").empty();
     var word = $("#searchForm").val();
     var searchURL = "https://en.wikipedia.org/w/api.php?action=opensearch&format=json&origin=*&search=";
@@ -28,7 +28,7 @@ $(document).ready(function() {
             var titleDisamb = resp[1][0];
             var quoteDisamb = resp[2][0];            
             if (resp[3][0]) {            
-              var rslt = "<a class='list-group-item list-group-item-action list-group-item-warning' href='" + rsltLink + "' target='_blank'><i><h4 style='color: green'>" + titleDisamb + "</h4><p>" + quoteDisamb + "</p></a>";
+              var rslt = "<a class='list-group-item list-group-item-action list-group-item-warning' href='" + rsltLink + "' target='_blank'><i><h3 style='color: #bb2c24; font-family: Big Caslon'>" + titleDisamb + "</h3><p>" + quoteDisamb + "</p></a><br>";
               $("ul").html(rslt);
             }
           }
@@ -47,7 +47,7 @@ $(document).ready(function() {
               var quote = data[2][i];
 
               if (rsltUrl) {                
-                var rsltStr = "<a class='list-group-item list-group-item-action list-group-item-primary' href='" + rsltUrl + "' target='_blank'><h4>" + title + "</h4><p>" + quote + "</p></a>";
+                var rsltStr = "<a class='list-group-item list-group-item-action list-group-item-primary' href='" + rsltUrl + "' target='_blank'><h3  style='color: #bb2c24; font-family: Big Caslon'>" + title + "</h3><p>" + quote + "</p></a>";
                 $("ul").append(rsltStr);
               }  
             }
@@ -64,7 +64,7 @@ $(document).ready(function() {
             for (var i = 0; i < 10; i++) {
               if (pages) {
                 var pageid = pages[i].pageid;
-                var resultTitle = '<h3 class="title">' + pages[i].title + '</h3>';
+                var resultTitle = '<h3 class="title" style="color: #bb2c24; font-family: Big Caslon">' + pages[i].title + '</h3>';
                 var resultSnip = '<p class="snippet">' + pages[i].snippet + '</p>';
                 var resultList = "<a class='list-group-item list-group-item-action list-group-item-primary' href='https://en.wikipedia.org/?curid=" + pageid + "' target='_blank'>" + resultTitle + resultSnip + "</a>";
                 $("ul").append(resultList);
@@ -75,5 +75,10 @@ $(document).ready(function() {
       }
     }  
   });
+
+  $(".submit_3").on("click", function() {
+    $(".list-group").empty();
+    $(".search_3").empty();
+  }); 
 
 });
