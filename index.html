@@ -37,28 +37,24 @@
       <span class="fab fa-searchengin fa-2x"></span>      
     </div>
     
-    <div class="container body-width" id="searchFrame" style="overflow: auto; height:900px;">
-      <div>
-        <!-- <input class="button" id="searchForm" type="text" name="search" placeholder="Search Wiki"> -->
+    <div class="container body-width" id="searchFrame">
+      <div>     
 
         <form id="search-form_3">
           <input type="text" class="button search_3 text-center" placeholder="Search Wiki" id="searchForm"/>
-          <!-- <input type="submit" class="submit_3" value="Search" /> -->
           <button type="submit" class="submit_3">
-            <i class="fas fa-window-close fa-lg"></i>
+            <i class="fas fa-times" style="width: 30px"></i>
           </button>
         </form>
 
-
-        <label class="container">Search Only In Titles
+        <div class="container check-bx">  
           <input type="checkbox" id="titlesOnlySearchCheck" checked="checked">
           <span class="checkmark"></span>
-        </label>
-        <!-- <button class="button">Wiki Search</button> -->
-
+          <label>Search Only In Titles</label>
+        </div>
 
         <form action="https://en.wikipedia.org/wiki/Special:Random" target="_blank"><br>
-          <input type="submit" value="Random Article" />
+          <input class="submit_3" type="submit" value="Random Article" style="width: 10em" />
         </form><br>
 
         <div><ul class='list-group'></ul></div>
