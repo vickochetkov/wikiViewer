@@ -19,3 +19,4 @@
   <li>Search bar has animated design.</li>  
 </ul>
 <p>---------------------------------</p>
+Preview: https://github.com/vickochetkov/wikiViewer/blob/master/5.gif
